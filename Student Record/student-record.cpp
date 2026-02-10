@@ -24,13 +24,14 @@ void deleteStudent(vector<Student> &students);
 void searchStudent(vector<Student> &students);
 void editStudent(vector<Student> &students);
 
-// Clear screen function 
-void clearScreen() {
-    #ifdef _WIN32
-        system("cls");
-    #else 
-        system("clear");
-    #endif
+// Clear screen function
+void clearScreen()
+{
+#ifdef _WIN32
+    system("cls");
+#else
+    system("clear");
+#endif
 }
 
 int main()
@@ -71,10 +72,10 @@ int main()
             break;
         case 5:
             searchStudent(students);
-        break;
+            break;
         case 6:
             editStudent(students);
-        break;
+            break;
         case 7:
             cout << "System exit." << endl;
             std::exit(0);
@@ -120,13 +121,13 @@ void displayStudents(vector<Student> &students)
          << setw(5) << "ID"
          << setw(25) << "Name"
          << setw(10) << "Age"
-         << setw(10) << "Grade" 
+         << setw(10) << "Grade"
          << setw(15) << "Status" << endl;
     for (int i = 0; i < students.size(); i++)
         cout << setw(5) << students[i].id
              << setw(25) << students[i].name
              << setw(10) << students[i].age
-             << setw(10) << students[i].grade 
+             << setw(10) << students[i].grade
              << setw(15) << students[i].status << endl;
 
     {
@@ -180,39 +181,49 @@ void deleteStudent(vector<Student> &students)
     cout << "Student no found. \n";
 }
 
-void searchStudent(vector<Student> &students) {
-    if (students.empty()) {
+void searchStudent(vector<Student> &students)
+{
+    if (students.empty())
+    {
         cout << "Students list is empty." << endl;
         return;
     }
-    
-    cout << "SEARCH STUDENT \n" << endl;
+
+    cout << "SEARCH STUDENT \n"
+         << endl;
     int search_id;
     cout << "Enter student ID: ";
     cin >> search_id;
 
-    for (auto it = students.begin(); it != students.end(); it++) {
-        if (it->id == search_id) {
+    for (auto it = students.begin(); it != students.end(); it++)
+    {
+        if (it->id == search_id)
+        {
             cout << "Name: " << it->name << " | Age: " << it->age << " |  Grade: " << it->grade << " |  Status: " << it->status << endl;
             return;
         }
     }
 }
 
-void editStudent(vector<Student> &students) {
+void editStudent(vector<Student> &students)
+{
     Student s;
-    if (students.empty()) {
+    if (students.empty())
+    {
         cout << "Students list is empty." << endl;
         return;
     }
-    
-    cout << "EDIT STUDENT \n" << endl;
+
+    cout << "EDIT STUDENT \n"
+         << endl;
     int search_id;
     cout << "Enter student ID: ";
     cin >> search_id;
 
-    for (auto it = students.begin(); it != students.end(); it++) {
-        if (it->id == search_id) {
+    for (auto it = students.begin(); it != students.end(); it++)
+    {
+        if (it->id == search_id)
+        {
             cout << "Enter name: ";
             string new_name;
             cin.ignore();
@@ -231,7 +242,7 @@ void editStudent(vector<Student> &students) {
             it->name = new_name;
             it->age = new_age;
             it->grade = new_grade;
-            
+
             it->status = (new_grade >= 70 ? "Passed" : "Failed");
             return;
         }

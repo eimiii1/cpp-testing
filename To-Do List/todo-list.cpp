@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <vector>
 #include <string>
+#include <limits>
 
 class Task
 {
@@ -35,7 +36,7 @@ void showMenu()
 void clearScreen() {
     #ifdef _WIN32
         system("cls");
-    #elif 
+    #else
         system("clear");
     #endif
 }
@@ -59,7 +60,10 @@ int main()
     while (true)
     {
         showMenu();
-        std::cin >> choice;
+        if(!(std::cin >> choice)) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
         clearScreen();
 
         switch (choice)
@@ -88,7 +92,7 @@ void addTask(std::vector<Task> &tasks, int &next_id)
 
     std::string desc;
     std::cin.ignore();
-    std::cout << "Enter task description: ";
+    std::cout << "Enter description: ";
     std::getline(std::cin, desc);
 
     Task t(next_id, desc);
